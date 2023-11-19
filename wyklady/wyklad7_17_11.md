@@ -138,22 +138,12 @@ if variable `text` or method `floatInWater()` were private, then
 the code in class Gosling wouldn't work, because we wouldn't have
 access.
 
-> are there tables in markdown?
-
-a method in _ can | private  |  default           | protected   |   public
-access a _ member |          |  (package-private) |             |
-------------------|----------|--------------------|-------------|---------
-the same class    | Yes      |  Yes               | Yes         |   Yes
-------------------|----------|--------------------|-------------|---------
-another class in  | No       |  Yes               | Yes         |   Yes
-the same package  |          |                    |             |
-------------------|----------|--------------------|-------------|---------
-a subclass in a   | No       |  No                | Yes         |   Yes
-different package |          |                    |             |
-------------------|----------|--------------------|-------------|---------
-an unrelated class| No       |  No                | No          |   Yes
-in a different    |          |                    |             |
-package           |          |                    |             |
+|                  | Private | Default (Package-Private) | Protected | Public |
+|------------------|---------|---------------------------|-----------|--------|
+| The Same Class   | Yes     | Yes                       | Yes       | Yes    |
+| Same Package     | No      | Yes                       | Yes       | Yes    |
+| Different Package| No      | No                        | Yes       | Yes    |
+| Different Class  | No      | No                        | No        | Yes    |
 
 
 lets say we have a class like this:
@@ -183,18 +173,9 @@ System.out.println(Koala.count; //prints 5
 a `static` member cannot call an instance member.
 
 
-Type             |  Calling                 | Legal? |   How?
------------------|--------------------------|--------|------------------------------
-Static method    |  Another static method   | Yes    |   Using the classname
-                 |  or variable             |        |
------------------|--------------------------|--------|------------------------------
-Static method    |  An instance method      | No     |
-                 |  or variable             |        |
------------------|--------------------------|--------|------------------------------
-Instance method  |  A static method         | Yes    |   Using the classname or
-                 |  or variable             |        |   a reference variable
------------------|--------------------------|--------|------------------------------
-Instance method  |  Another instance method | Yes    |   Using a reference variable
-                 |  or variable             |        |
-
-
+| Type            | Calling                  | Legal? | How?                             |
+|-----------------|--------------------------|--------|----------------------------------|
+| Static Method   | Another Static Method    | Yes    | Using the class name             |
+| Static Method   | Instance Method or Var   | No     |                                  |
+| Instance Method | Static Method or Var      | Yes    | Using the class name or a reference variable |
+| Instance Method | Another Instance Method  | Yes    | Using a reference variable      |
